@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\13635\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\13635\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Shader Demo.799351683.00" t="ExcludeRecursive" />
+    <e p="H:\UnityProjects\Shader Demo" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="PostEffect.cs" t="Include" />
+        <e p="Shaders" t="Include">
+          <e p="ComputeRayTrace.compute" t="Include" />
+          <e p="Demo1.shader" t="Include" />
+          <e p="DemoUnlit.shader" t="Include" />
+          <e p="DemoUnlit1.shader" t="Include" />
+          <e p="EdgeDetect.shader" t="Include" />
+          <e p="NewUnlitShader.shader" t="Include" />
+          <e p="RayTracing.shader" t="Include" />
+          <e p="Zelda.shader" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Shader Demo.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
