@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>H:\Engines\Unity\2019.3.2f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{37976ec2-591c-0497-7d9b-639bb86989cc}</ProjectGuid>
+    <ProjectGuid>{C26E9737-1C59-9704-7D9B-639BB86989CC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,21 +47,59 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>H:\Engines\Unity\2019.3.2f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>H:\Engines\Unity\2019.3.2f1\Editor\Data\Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
      <Compile Include="Assets\Scripts\Normal\PostEffect.cs" />
      <Compile Include="Assets\Scripts\RayTrace\RtCamera.cs" />
-     <Compile Include="Assets\Scripts\丁达尔\CameraControll.cs" />
+     <Compile Include="Assets\Scripts\VolumetricLight\CameraControll.cs" />
+     <Compile Include="Assets\Scripts\VolumetricLight\RenderShadow.cs" />
      <None Include="Assets\Shaders\Normal\DemoUnlit1.shader" />
+     <None Include="Assets\Shaders\VolumetricLight\DeapthTextureShader.shader" />
      <None Include="Assets\Shaders\Normal\NewUnlitShader.shader" />
-     <None Include="Assets\Shaders\丁达尔\Dingdaer.shader" />
+     <None Include="Assets\Shaders\VolumetricLight\ShadowMapNormal.shader" />
      <None Include="Assets\Shaders\Normal\EdgeDetect.shader" />
      <None Include="Assets\Shaders\RayTrace\AddShader.shader" />
      <None Include="Assets\Shaders\Normal\DemoUnlit.shader" />
      <None Include="Assets\Shaders\Normal\RayTracing.shader" />
      <None Include="Assets\Shaders\Normal\Zelda.shader" />
      <None Include="Assets\Shaders\RayTrace\ComputeRayTrace.compute" />
+     <None Include="Assets\Shaders\VolumetricLight\DepthMap.shader" />
+     <None Include="Assets\Shaders\VolumetricLight\DepthShader.shader" />
+     <None Include="Assets\Shaders\VolumetricLight\ShadowMap.shader" />
+     <None Include="Assets\Shaders\VolumetricLight\NewImageEffectShader.shader" />
      <None Include="Assets\Shaders\Normal\Demo1.shader" />
- <Reference Include="UnityEngine">
- <HintPath>H:/Engines/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
+ <Reference Include="Unity.Timeline.Editor">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.VSCode.Editor">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro.Editor">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Timeline">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.CollabProxy.Editor">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Rider.Editor">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>H:/UnityProjects/Shader Demo/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>H:/Engines/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -237,9 +277,6 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>H:/Engines/Unity/2019.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor">
- <HintPath>H:/Engines/Unity/2019.3.2f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>H:/Engines/Unity/2019.3.2f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -587,46 +624,8 @@
  <HintPath>H:/Engines/Unity/2019.3.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Unity.Timeline.Editor.csproj">
-      <Project>{db3121f6-11c0-d183-e55d-b2c4a3d96e6d}</Project>
-      <Name>Unity.Timeline.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.VSCode.Editor.csproj">
-      <Project>{59ac1c1a-13a7-2310-d6c8-1fd29a49dfd4}</Project>
-      <Name>Unity.VSCode.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
-      <Project>{f73b3ec0-34be-a2df-2b4e-21b36e0eed35}</Project>
-      <Name>Unity.TextMeshPro.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{8911bd24-b429-8197-8625-2ac86271d6f3}</Project>
-      <Name>UnityEngine.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{f19e5f12-4124-eae3-fda3-d3d1ab4eb971}</Project>
-      <Name>Unity.Timeline</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
-      <Project>{0233b3be-fb70-5683-1c65-0e9f70bfff34}</Project>
-      <Name>Unity.CollabProxy.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Rider.Editor.csproj">
-      <Project>{0dba5e15-804e-d291-a9b1-d7f843e6ba2e}</Project>
-      <Name>Unity.Rider.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{250cd610-6b28-1e5d-24d5-fdc17be1c119}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{a38fc2bc-fda9-8336-fc08-939519c4a35f}</Project>
-      <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
